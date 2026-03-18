@@ -178,7 +178,7 @@ function SkillsPage({ showToast }: { showToast: (m: string, t?: 'ok'|'err') => v
   useEffect(() => { load() }, [load])
 
   const save = async () => {
-    try { await api('POST', '/skills', modal); setModal(null); load(); showToast('✅ Skill disimpan!') }
+    try { if (!modal) return; await api('POST', '/skills', modal); setModal(null); load(); showToast('✅ Skill disimpan!') }
     catch { showToast('❌ Gagal', 'err') }
   }
   const del = async (id: number) => {
@@ -235,7 +235,7 @@ function ExperiencePage({ showToast }: { showToast: (m: string, t?: 'ok'|'err') 
   useEffect(() => { load() }, [load])
 
   const save = async () => {
-    try { await api('POST', '/experience', modal); setModal(null); load(); showToast('✅ Disimpan!') }
+    try { if (!modal) return; await api('POST', '/experience', modal); setModal(null); load(); showToast('✅ Disimpan!') }
     catch { showToast('❌ Gagal', 'err') }
   }
   const del = async (id: number) => {
@@ -298,7 +298,7 @@ function ProjectsPage({ showToast }: { showToast: (m: string, t?: 'ok'|'err') =>
   useEffect(() => { load() }, [load])
 
   const save = async () => {
-    try { await api('POST', '/projects', { ...modal, image_url: modal.image_url ?? '' }); setModal(null); load(); showToast('✅ Project disimpan!') }
+    try { if (!modal) return; await api('POST', '/projects', { ...modal, image_url: modal.image_url ?? '' }); setModal(null); load(); showToast('✅ Project disimpan!') }
     catch { showToast('❌ Gagal', 'err') }
   }
   const del = async (id: number) => {
