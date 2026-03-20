@@ -1,8 +1,10 @@
 import { NextRequest } from 'next/server'
-import { sql, getProfile } from '@/lib/db'
+import { neon } from '@neondatabase/serverless'
+import { getProfile } from '@/lib/db'
 import { isAuthenticated, jsonResponse, unauthorized } from '@/lib/auth'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function GET() {
   return jsonResponse(await getProfile())
@@ -11,6 +13,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   if (!await isAuthenticated(req)) return unauthorized()
   const b = await req.json()
+  const sql = neon(process.env.DATABASE_URL!, { fetchOptions: { cache: 'no-store' } })
   await sql`
     UPDATE profile SET
       name          = ${b.name},

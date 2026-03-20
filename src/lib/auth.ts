@@ -9,7 +9,12 @@ export async function isAuthenticated(req: NextRequest): Promise<boolean> {
 }
 
 export function jsonResponse(data: unknown, status = 200) {
-  return Response.json(data, { status })
+  return Response.json(data, {
+    status,
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate',
+    }
+  })
 }
 
 export function unauthorized() {
