@@ -1,53 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --ink:    #1a1612;
-  --body:   #3d3630;
-  --muted:  #8a7f76;
-  --line:   #e4ddd6;
-  --bg:     #faf8f5;
-  --white:  #ffffff;
-  --accent: #c8521a;
-  --accent-light: #fdf0e8;
-  --green:  #1e7a4a;
-  --wa:     #25D366;
-}
-
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--body);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 15px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-a { color: inherit; text-decoration: none; }
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(30,122,74,.5); }
-  50%      { box-shadow: 0 0 0 5px rgba(30,122,74,0); }
-}
-@keyframes shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-.fade-1 { animation: fadeUp .5s ease both; }
-.fade-2 { animation: fadeUp .5s .08s ease both; }
-.fade-3 { animation: fadeUp .5s .16s ease both; }
-.fade-4 { animation: fadeUp .5s .24s ease both; }
-.fade-5 { animation: fadeUp .5s .32s ease both; }
-
-.skeleton {
-  background: linear-gradient(90deg,#f0ece8 25%,#e8e4e0 50%,#f0ece8 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.4s infinite;
+/* Skeleton utilities — dipakai oleh Skeletons.tsx */
+.sk {
+  background: linear-gradient(90deg,#ede9e4 25%,#e4e0db 50%,#ede9e4 75%);
+  background-size: 400% 100%;
+  animation: sk-shimmer 1.6s ease infinite;
   border-radius: 6px;
+  display: inline-block;
+}
+.sk-dark {
+  background: linear-gradient(90deg,rgba(255,255,255,.07) 25%,rgba(255,255,255,.13) 50%,rgba(255,255,255,.07) 75%);
+  background-size: 400% 100%;
+  animation: sk-shimmer 1.6s ease infinite;
+  border-radius: 6px;
+  display: inline-block;
+}
+@keyframes sk-shimmer {
+  0%   { background-position: 100% 0 }
+  100% { background-position: -100% 0 }
 }
